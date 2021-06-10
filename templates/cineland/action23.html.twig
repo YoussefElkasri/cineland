@@ -1,0 +1,170 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent()}} Augmenter ou diminuer la note d’un film !
+{% endblock %}
+
+{% block contenu %}
+    <center><h4>Choisissez la méthode qui vous plait pour modifier la note d'un film !</h4></center>
+    <div class="col-md-6">
+        <center><h5 ><span style="color: #00a6b2">Méthode 1</span></h5></center>
+    </div>
+    <div class="col-md-6">
+        <center> <h5 ><span style="color: #00a6b2">Méthode 2</span></h5></center>
+    </div>
+    <div class="col-md-6">
+        <div class="content-panel">
+            <table class="table table-striped table-advance table-hover" id="dynamictable">
+                <thead>
+                <tr>
+                    <th> #ID</th>
+                    <th> TITRE</th>
+                    <th> NOTE</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for film in films%}
+                    <tr>
+
+                        <td >{{film.id}}</td>
+                        <td><button id="btnInfo"  data-id="{{film.id}}" data-nom="{{film.titre}}">{{film.titre}}</button></td>
+                        <td >{{film.note}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <div class=" form">
+            <form action="modifierNoteFilmSuite23" method="POST" id="dynamicForm">
+                <div class="form-group ">
+                    <label class="control-label col-lg-3">
+                        Titre<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-10">
+                        <input class="form-control " id="titre" placeholder="Entrer le titre de film..." type="text" name="date1" required="required">
+                        <div  id="resultat-recherche"></div>
+                    </div>
+                </div>
+
+                <div style="position: relative;top:10px;" class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button id="btnInfo2" class="btn btn-theme" type="submit">Valider</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="title"> </h4>
+                </div>
+                <div class="modal-body" id="detail">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            //Méthode 1
+            $("#dynamictable").on("click","#btnInfo", function (e) {
+                e.preventDefault();
+
+                var ID = $(this).data('id');
+                var TITRE = $(this).data('nom');
+                document.getElementById("title").innerHTML=TITRE;
+
+                var dataString = {'ID':ID
+                };
+
+                $.ajax
+                ({
+                    type: "POST",
+                    url: "{{ path('action23_modiferNote') }}",
+                    data: dataString,
+                    //dataType:"json",
+                    success: function(html) {
+                        $('#detail').html(html);
+                    }
+                });
+
+                $('#myModal').modal('show');
+
+            });
+
+            //Méthode 2
+            $("#dynamicForm").on("click","#btnInfo2", function (e) {
+                e.preventDefault();
+
+                var titre=$('#titre').val();
+                //alert(titre);
+                document.getElementById("title").innerHTML=titre;
+                var dataString = {'TITRE':titre
+                };
+
+                $.ajax
+                ({
+                    type: "POST",
+                    url: "{{ path('action23_modiferNoteV2') }}",
+                    data: dataString,
+                    //dataType:"json",
+                    success: function(html) {
+                        $('#detail').html(html);
+                    }
+                });
+
+                $('#myModal').modal('show');
+
+            });
+
+            //Recherche titres films
+
+            $('#titre').keyup(function(){
+
+                $('#resultat-recherche').html('');
+
+                var titre = $(this).val();
+                var dataString = {'titre':titre
+                };
+
+                if(titre != ""){
+
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: "{{ path('recherche_barre_films') }}",
+                        data: dataString,
+                        //dataType:"json",
+                        success: function(html) {
+                            if(html != '') {
+
+                                $('#resultat-recherche').html(html);
+                            }else{
+
+                                document.getElementById('resultat-recherche').innerHTML = "<div >Aucun Film trouvé !</div>"
+                            }
+                        }
+                    });
+
+                }
+            });
+        });
+    </script>
+{% endblock %}

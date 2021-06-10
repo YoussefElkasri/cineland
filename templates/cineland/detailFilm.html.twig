@@ -1,0 +1,74 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent()}} Les détails de {{film.titre}}
+{% endblock %}
+
+{% block contenu %}
+    <div class="col-md-12">
+        <div class="content-panel">
+            <form class="cmxform form-horizontal tasi-form" id="" name=""  >
+
+                <div class="form-group ">
+                    <label for="ID" class="control-label col-lg-3">ID</label>
+                    <div class="col-lg-6">
+                        <input class=" form-control" value="{{film.id}}" id="" name="" type="number" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">TITRE</label>
+                    <div class="col-lg-6">
+                        <input class=" form-control" value="{{film.titre}}" id="" name="" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">DUREE</label>
+                    <div class="col-lg-6">
+                        <input class=" form-control" value="{{film.duree}}" id="" name="" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">DATE SORTIE</label>
+                    <div class="col-lg-6">
+                        <input class=" form-control" value="{{film.dateSortie|date('d-m-Y')}}" id="" name="" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">NOTE</label>
+                    <div class="col-lg-6">
+                        <input class=" form-control" value="{{film.note}}" id="" name="" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">AGE MINIMAL</label>
+                    <div class="col-lg-6">
+                        <input class=" form-control" value="{{film.ageMinimal}}" id="" name="" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">GENRE</label>
+                    <div class="col-lg-6">
+                        {% if film.genre.id|default('') != '' %}
+                            <input class=" form-control" value="{{film.genre.nom}}" id="" name="" type="text" readonly="readonly" />
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label for="TITRE" class="control-label col-lg-3">ACTEURS</label>
+                    <div class="col-lg-6">
+                        <select multiple class="form-control">
+                            {% for acteur in film.acteurs%}
+                                <option>{{acteur.nomPrenom}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <p></p>
+        <a href="{{ path('liste_film_for_details') }}" ><button class="btn btn-primary">Retour au filtre</button></a>
+    </div>
+
+{% endblock %}

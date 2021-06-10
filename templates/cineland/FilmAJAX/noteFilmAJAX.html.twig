@@ -1,0 +1,39 @@
+
+<div class="form">
+
+    <form class="cmxform form-horizontal tasi-form" action="modifierNoteFilmSuite23" method="POST"  >
+       <center><h4><span style="color: #880000">Attention ! vous modifiez la note d'un film existant !</span></h4></center>
+        <p></p>
+        <div class="form-group ">
+            <label for="ID" class="control-label col-lg-3">ID</label>
+            <div class="col-lg-6">
+                <input class=" form-control" value="{{film.id}}" id="" name="id" type="number" readonly="readonly" />
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="TITRE" class="control-label col-lg-3">TITRE</label>
+            <div class="col-lg-6">
+                <input class=" form-control" value="{{film.titre}}" id="" name="" type="text" readonly="readonly" />
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label for="TITRE" class="control-label col-lg-3">NOTE</label>
+            <div class="col-lg-6">
+                <input class=" form-control" min="0" max="20" value="{{film.note}}" id="" name="note" type="number"  />
+            </div>
+        </div>
+        <div style="position: relative;top:10px;" class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <div class="modal-footer">
+                    <input class="btn btn-theme" type="submit" value="Valider">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+

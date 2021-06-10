@@ -1,0 +1,65 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    TABLEAU DE BORD
+{% endblock %}
+{% block contenu %}
+
+    <div class="col-md-12 mb">
+        <div class="contenant">
+            <center>
+                <img class="imgCinema" src="../../img/cinema.jpg">
+            </center>
+            <div class="texte_centrer">CINELAND CHEZ VOUS</div>
+            <div class="texte_centrer2">ÊTES-VOUS PRÊT ?</div>
+        </div>
+
+    </div>
+
+    <div style="color:white;background-color: #22242a;border-radius: 10px;" class="col-md-6 mb">
+        <center>
+            <p style="font-size: 24px;"><span class="color2">Les films que vous aimez</span> par ses acteurs</p>
+            <p>
+                <img class="acteurs" src="../../img/tom_cruise.jpg">
+                <img class="acteurs" src="../../img/jennifer.jpg">
+                <img class="acteurs" src="../../img/brad_pitt.jpg">
+            </p>
+            <p style="font-size: 18px">TOM CRUISE
+                <span class="color2">●</span>JENNIFER LAWRENCE
+                <span class="color2">●</span>BRAD PITT</p>
+            <a href="{{ path('recherche_film_par_acteur') }}" ><button style="background-color: #4ECDC4" type="button" class="btn btn-primary btn-lg btn-block">Rechercher votre film par votre acteur préféré</button></a>
+       <p></p>
+        </center>
+    </div>
+    <div style="color:white;background-color: #22242a;border-radius: 10px;" class="col-md-6 mb">
+        <center>
+            <p style="font-size: 24px;">Les films que vous aimez <span class="color2">par leurs genres </span></p>
+            <P><img class="genre" src="../../img/genresFilms.jpg"></P>
+            <p style="font-size: 18px">Action<span class="color2">●</span>Aventure<span class="color2">●</span>Fantastique
+               <span class="color2">●</span>Animation</p>
+            <a href="{{ path('recherche_film_par_genre') }}" ><button style="background-color: #4ECDC4" type="button" class="btn btn-primary btn-lg btn-block">Rechercher votre film par votre genre préféré</button></a>
+        <p></p>
+        </center>
+    </div>
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var unique_id = $.gritter.add({
+                // (string | mandatory) the heading of the notification
+                title: 'Projet Symfony Cineland !',
+                // (string | mandatory) the text inside the notification
+                text: 'Projet realisee par EL KASRI Youssef et LAHYAN Youssef.',
+                // (string | optional) the image to display on the left
+                image: '../../img/logoupjv-bleu.png',
+                // (bool | optional) if you want it to fade out on its own or just sit there
+                sticky: false,
+                // (int | optional) the time you want it to be alive for before fading out
+                time: 5000,
+                // (string | optional) the class name you want to apply to that specific message
+                class_name: 'my-sticky-class'
+            });
+
+            return false;
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+{% block titre %}
+    Modifier un acteur
+{% endblock %}
+{% block contenu %}
+    <center><h4>Attention ! vous modifiez un acteur existant.</h4></center>
+    {% include "cineland/acteur/formulaire.html.twig" %}
+    <p><a href="{{ path('liste_acteur') }}">Abandonner</a></p>
+{% endblock %}

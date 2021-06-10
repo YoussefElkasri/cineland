@@ -1,0 +1,42 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }} Films entre deux années
+{% endblock %}
+{% block contenu %}
+    <h3>renseigner les champs ci-dessous :</h3>
+
+    <div class="col-md-12">
+
+        <div class=" form">
+            <form action="action13Suite" method="POST">
+                <div class="form-group ">
+                    <label class="control-label col-lg-2">
+                        Année 1<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-10">
+                        <input class="form-control " pattern="[0-9]{4}" placeholder="Entrer une année(format : xxxx)..." type="text" name="date1" required="required">
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="control-label col-lg-2">
+                        Année 2<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-10">
+                        <input class="form-control " pattern="[0-9]{4}" placeholder="Entrer une année(format : xxxx)..." type="text" name="date2" required="required">
+                    </div>
+                </div>
+
+                <div style="position: relative;top:10px;" class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input class="btn btn-theme" type="submit" value="Valider">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}

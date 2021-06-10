@@ -1,0 +1,9 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }} Page de modification
+{% endblock %}
+{% block contenu %}
+    <center><h4>Attention ! vous modifiez un film existant.</h4></center>
+    {% include "cineland/film/formulaire.html.twig" %}
+    <p><a href="{{ path('liste_film') }}">Abandonner</a></p>
+{% endblock %}

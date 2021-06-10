@@ -1,0 +1,39 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent()}} Les genres pour lesquels {{ nom }} a joué au moins 2 films
+{% endblock %}
+
+{% block contenu %}
+
+    <div class="col-md-12">
+        <p></p>
+        <div class="content-panel">
+
+            <table class="table table-striped table-advance table-hover">
+
+                <thead>
+                <tr>
+                    <th> #ID</th>
+                    <th > Nom</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for genre in genres%}
+                    <tr>
+
+                        <td >{{genre.id}}</td>
+                        <td>{{genre.nom}} </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p></p>
+        <a href="{{ path('action18') }}" ><button class="btn btn-primary">Retour au filtre</button></a>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+{% block titre %}
+    Ajouter un film
+{% endblock %}
+{% block contenu %}
+    <h3>Ajouter un nouveau film :</h3>
+
+    <div>
+        {% include "cineland/film/formulaire.html.twig" %}
+    </div>
+{% endblock %}

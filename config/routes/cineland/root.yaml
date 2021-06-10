@@ -1,0 +1,261 @@
+init:
+  path: /init
+  controller: App\Controller\InitController::insert
+
+cineland_accueil:
+  path: /accueil
+  controller: App\Controller\CinelandController::accueil
+
+Liste_Genre:
+  path: /listeGenre
+  controller: App\Controller\GenreController::listeGenre
+
+ajouter_genre:
+  path: genre/ajouter
+  controller: App\Controller\GenreController::ajouterGenre
+
+ajouter_acteur:
+  path: /ajouterActeur
+  controller: App\Controller\ActeurController::ajouterActeur
+
+liste_acteur:
+  path: /listeActeur
+  controller: App\Controller\ActeurController::listeActeur
+
+liste_acteur_for_details:
+  path: /listeActeurForDetails
+  controller: App\Controller\ActeurController::listeActeurForDetails
+
+acteur_Details:
+  path: /detailActeur
+  controller: App\Controller\ActeurController::detailActeur
+  methods: POST
+
+acteur_DetailsV2:
+  path: /detailActeur/{id}
+  controller: App\Controller\ActeurController::detailActeurV2
+  requirements:
+    id: \d+
+
+modification_acteur:
+  path: /modifierActeur/{id}
+  controller: App\Controller\ActeurController::modifierActeur
+  requirements:
+    id: \d+
+
+modification_acteur_v2:
+  path: /modifierActeurV2
+  controller: App\Controller\ActeurController::modifierActeurV2
+  methods: POST
+
+modification_acteur_suite:
+  path: /modifierActeurSuite/{id}
+  controller: App\Controller\ActeurController::modifierActeurSuite
+  methods: POST
+
+liste_film:
+  path: /listeFilm
+  controller: App\Controller\FilmController::listeFilm
+
+ajouter_film:
+  path: film/ajouter
+  controller: App\Controller\FilmController::ajouterFilm
+
+supprimer_film:
+  path: film/supprimer
+  controller: App\Controller\FilmController::supprimerFilm
+
+liste_acteur_for_suppression:
+  path: /listeActeurForSuppression
+  controller: App\Controller\ActeurController::listeActeurForSuppression
+
+liste_acteur_for_modification:
+  path: /listeActeurForModification
+  controller: App\Controller\ActeurController::listeActeurForModification
+
+liste_film_for_modification:
+  path: /listeFilmForModification
+  controller: App\Controller\FilmController::listeFilmForModification
+
+liste_film_for_details:
+  path: /listeFilmForDetails
+  controller: App\Controller\FilmController::listeFilmForDetails
+
+Supprimer_acteur:
+  path: /supprimerActeur
+  controller: App\Controller\ActeurController::supprimerActeur
+  methods: POST
+
+
+detail_film:
+  path: /detailFilm/{id}
+  controller: App\Controller\FilmController::detailFilm
+  requirements:
+    id: \d+
+
+detail_filmV2:
+  path: /detailFilmV2
+  controller: App\Controller\FilmController::detailFilmV2
+  methods: POST
+
+modification_film:
+  path: /modifierFilm/{id}
+  controller: App\Controller\FilmController::modifierFilm
+  requirements:
+    id: \d+
+
+modification_film_v2:
+  path: /modifierFilmV2
+  controller: App\Controller\FilmController::modifierFilmV2
+  methods: POST
+
+modification_film_suite:
+  path: /modifierFilmSuite/{id}
+  controller: App\Controller\FilmController::modifierFilmSuite
+  methods: POST
+
+action13:
+  path: /action13/
+  controller: App\Controller\FilmController::action13
+
+action13_Suite:
+  path: /action13/action13Suite
+  controller: App\Controller\FilmController::action13Suite
+  methods: POST
+
+action14:
+  path: action14
+  controller: App\Controller\FilmController::action14
+
+action15:
+  path: /action15/
+  controller: App\Controller\ActeurController::action15
+
+action15_Suite:
+  path: /action15/action15Suite
+  controller: App\Controller\ActeurController::action15Suite
+  methods: POST
+
+action16:
+  path: action16
+  controller: App\Controller\ActeurController::action16
+
+action17:
+  path: /action17/
+  controller: App\Controller\FilmController::action17
+
+action18:
+  path: action18
+  controller: App\Controller\ActeurController::action18
+
+action17_Suite:
+  path: /action17/action17Suite
+  controller: App\Controller\FilmController::action17Suite
+  methods: POST
+
+action19:
+  path: /action19/
+  controller: App\Controller\ActeurController::action19
+
+action19_Suite:
+  path: /action19/action19Suite
+  controller: App\Controller\ActeurController::action19Suite
+  methods: POST
+
+action20:
+  path: action20
+  controller: App\Controller\ActeurController::action20
+
+action21:
+  path: /action21
+  controller: App\Controller\ActeurController::action21
+
+action22:
+  path: action22/
+  controller: App\Controller\GenreController::action22
+
+action22_Suite:
+  path: action22/action22Suite
+  controller: App\Controller\GenreController::action22Suite
+
+
+action23:
+  path: /action23
+  controller: App\Controller\FilmController::action23
+
+action23_modiferNote:
+  path: /modifierNoteFilm23
+  controller: App\Controller\FilmController::modifierNoteFilm23
+
+action23_modiferNoteV2:
+  path: /modifierNoteFilm23V2
+  controller: App\Controller\FilmController::modifierNoteFilm23V2
+
+action23_modifierNote_Suite:
+  path: /modifierNoteFilmSuite23
+  controller: App\Controller\FilmController::modifierNoteFilmSuite23
+  methods: POST
+
+action24:
+  path: action24
+  controller: App\Controller\GenreController::action24
+
+action25:
+  path: /action25/
+  controller: App\Controller\FilmController::action25
+
+action25_Suite:
+  path: /action25/action25Suite
+  controller: App\Controller\FilmController::action25Suite
+  methods: POST
+
+action26:
+  path: action26
+  controller: App\Controller\ActeurController::action26
+
+GetDetail_acteurFilm:
+  path: /GetDetailActeurFilm
+  controller: App\Controller\ActeurController::GetDetailActeurFilm
+
+GetDetail_Film:
+  path: /GetDetailFilm
+  controller: App\Controller\FilmController::GetDetailFilm
+
+voir_acteurDetails:
+  path: acteur/voirDetails
+  controller: App\Controller\ActeurController::getActeurDetails
+
+recherche_film_par_acteur:
+  path: /filmByActeur
+  controller: App\Controller\FilmController::filmByActeur
+
+recherche_film_par_acteur_Suite:
+  path: /filmByActeurSuite
+  controller: App\Controller\FilmController::filmByActeurSuite
+
+recherche_film_par_genre:
+  path: /filmByGenre
+  controller: App\Controller\FilmController::filmByGenre
+
+recherche_film_par_genre_Suite:
+  path: /filmByGenreSuite
+  controller: App\Controller\FilmController::filmByGenreSuite
+
+recherche_barre_acteurs:
+  path: /BarreRechercheActeurs
+  controller: App\Controller\ActeurController::BarreRechercheActeurs
+
+recherche_barre_genres:
+  path: /BarreRechercheGenres
+  controller: App\Controller\GenreController::BarreRechercheGenres
+
+recherche_barre_films:
+  path: /BarreRechercheFilms
+  controller: App\Controller\FilmController::BarreRechercheFilms
+
+
+
+
+
+
+

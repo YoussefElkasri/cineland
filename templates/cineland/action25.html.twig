@@ -1,0 +1,23 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }} Rechercher des films via une partie de titre
+{% endblock %}
+{% block contenu %}
+    <h3>renseigner le champs ci-dessous :</h3>
+
+    <div class="form">
+        <form class="cmxform form-horizontal tasi-form" action="action25Suite" method="POST"  >
+            <div class="form-group ">
+                <label for="ID" class="control-label col-lg-3">Entrer un titre ou une partie d'un titre d'un film <span style="color: #880000">*</span>:</label>
+                <div class="col-lg-6">
+                    <input class=" form-control" id="" name="titre" type="text"  required="required"/>
+                </div>
+                <div class=" col-lg-2">
+                    <input class="btn btn-theme" type="submit" value="Valider">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}

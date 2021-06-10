@@ -1,0 +1,108 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }} Films dans lesquels 2 acteurs ont joué ensemble
+{% endblock %}
+{% block contenu %}
+    <h3>renseigner les champs ci-dessous :</h3>
+
+    <div class="col-md-12">
+
+        <div class=" form">
+            <form action="action17Suite" method="POST">
+                <div class="form-group ">
+                    <label class="control-label col-lg-2">
+                        Nom et Prénom<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-10">
+                        <input id="chercheNom" class="form-control "  placeholder="Entrer le nom et prénom de l'acteur..." type="text" name="nom1" required="required">
+                        <div  id="resultat-recherche"></div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label col-lg-2">
+                        Nom et Prénom<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-10">
+                        <input id="chercheNom2" class="form-control "  placeholder="Entrer le nom et prénom de l'acteur..." type="text" name="nom2" required="required">
+                        <div  id="resultat-recherche2"></div>
+                    </div>
+                </div>
+
+                <div style="position: relative;top:10px;" class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input class="btn btn-theme" type="submit" value="Valider">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#chercheNom').keyup(function(){
+
+                $('#resultat-recherche').html('');
+
+                var nom = $(this).val();
+                var dataString = {'nom':nom
+                };
+
+                if(nom != ""){
+
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: "{{ path('recherche_barre_acteurs') }}",
+                        data: dataString,
+                        //dataType:"json",
+                        success: function(html) {
+                            if(html != '') {
+
+                                $('#resultat-recherche').html(html);
+                            }else{
+
+                                document.getElementById('resultat-recherche').innerHTML = "<div >Aucun Film trouvé !</div>"
+                            }
+                        }
+                    });
+
+                }
+            });
+
+            $('#chercheNom2').keyup(function(){
+
+                $('#resultat-recherche2').html('');
+
+                var nom = $(this).val();
+                var dataString = {'nom':nom
+                };
+
+                if(nom != ""){
+
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: "{{ path('recherche_barre_acteurs') }}",
+                        data: dataString,
+                        //dataType:"json",
+                        success: function(html) {
+                            if(html != '') {
+
+                                $('#resultat-recherche2').html(html);
+                            }else{
+
+                                document.getElementById('resultat-recherche2').innerHTML = "<div >Aucun Film trouvé !</div>"
+                            }
+                        }
+                    });
+
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

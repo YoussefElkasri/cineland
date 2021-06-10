@@ -1,0 +1,100 @@
+{{ form_start(monFormulaire) }}
+{{ form_errors(monFormulaire) }}
+<div class="col-md-12">
+
+    {% if errorMessage is not null %}
+        <div class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+    {% endif %}
+
+    <div class=" form">
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.titre) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.titre) }}
+                <p class="help-block">{{ form_help(monFormulaire.titre) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.titre) }}</p>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.duree) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.duree) }}
+                <p class="help-block">{{ form_help(monFormulaire.duree) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.duree) }}</p>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.dateSortie) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.dateSortie) }}
+                <p class="help-block">{{ form_help(monFormulaire.dateSortie) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.dateSortie) }}</p>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.note) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.note) }}
+                <p class="help-block">{{ form_help(monFormulaire.note) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.note) }}</p>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.ageMinimal) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.ageMinimal) }}
+                <p class="help-block">{{ form_help(monFormulaire.ageMinimal) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.ageMinimal) }}</p>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.genre) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.genre) }}
+                <p class="help-block">{{ form_help(monFormulaire.genre) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.genre) }}</p>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-lg-2">
+                {{ form_label(monFormulaire.acteurs) }}
+            </label>
+            <div class="col-lg-10">
+                {{ form_widget(monFormulaire.acteurs) }}
+                <p class="help-block">{{ form_help(monFormulaire.acteurs) }}</p>
+                <p class="help-block">{{ form_errors(monFormulaire.acteurs) }}</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                {{ form_row(monFormulaire.submit) }}
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{{ form_end(monFormulaire) }}

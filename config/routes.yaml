@@ -1,0 +1,13 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+cineland:
+  resource: routes/cineland/root.yaml
+  prefix: /cineland
+
+
+
+
+
+

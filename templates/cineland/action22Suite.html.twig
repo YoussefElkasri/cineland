@@ -1,0 +1,51 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+{% block titre %}
+    La durée moyenne de tous les films du genre : {{ nom }}
+{% endblock %}
+{% block contenu %}
+
+    {% if genre is empty %}
+{#        <h3>La durée moyenne de tous les films du genre {{ nom }} est : 0</h3>#}
+        <div class="row ">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="grey-panel pn donut-chart">
+                    <div class="grey-header">
+                        <h5>{{ nom }}</h5>
+                    </div>
+                    <div class="row" style="margin-top: 15%">
+                        <div class="col-md-6 col-xs-6 goleft">
+                            <p>La moyenne<br/>est égale à:</p>
+                        </div>
+                        <div class="col-sm-6 col-xs-6">
+                            <h2>0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% for genre in genre %}
+{#            <h3>La durée moyenne de tous les films du genre {{ genre.nomGenre }} est : {{ genre.moyenne }} //{{ genre.somme }}</h3>#}
+            <div class="row ">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="grey-panel pn donut-chart">
+                        <div class="grey-header">
+                            <h5>{{ nom }}</h5>
+                        </div>
+                        <div class="row" style="margin-top: 15%">
+                            <div class="col-md-6 col-xs-6 goleft">
+                                <p>La moyenne<br/>est égale à:</p>
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <h2>{{ genre.moyenne|number_format(2, '.', ',') }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('action22') }}" ><button class="btn btn-primary">Retour au filtre</button></a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+{% block titre %}
+    Pour chaque acteur, la liste des films dans lesquels il a joué dans l’ordre chronologique
+{% endblock %}
+{% block contenu %}
+
+
+        <div class="col-lg-12">
+            <div class="content-panel">
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed" id="dynamictable">
+                        <thead>
+                        <tr>
+                            <th>ID d'acteur</th>
+                            <th>Nom et prénom d'acteur</th>
+                            <th>Films</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for acteur in acteurs %}
+                        <tr>
+                            <td>{{ acteur.id }}</td>
+                            <td><button class="btnActeur"  data-id="{{acteur.id}}" data-nom="{{acteur.nomPrenom}}">{{acteur.nomPrenom}} </button></td>
+                            <td>
+                                <table class="table table-bordered table-striped table-condensed">
+                                    <tr>
+                                        <th>ID du film</th>
+                                        <th>Titre du film</th>
+                                        <th>Date de sortie du film</th>
+                                    </tr>
+                                    {% for film in acteur.film %}
+                                    <tr>
+                                        <td>{{ film.id }}</td>
+                                        <td><button class="btnFilm"  data-id="{{ film.id }}" data-nom="{{ film.titre }}">{{ film.titre }} </button></td>
+                                        <td>{{ film.dateSortie|date('Y-m-d') }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!-- /content-panel -->
+        </div>
+        <!-- /col-lg-4 -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="title"> </h4>
+                </div>
+                <div class="modal-body" id="detail">
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $(".btnActeur").on("click", function (e) {
+                e.preventDefault();
+
+                var ID = $(this).data('id');
+                var nomPrenom = $(this).data('nom');
+                document.getElementById("title").innerHTML=nomPrenom;
+                var dataString = {'ID':ID
+                };
+
+                $.ajax
+                ({
+                    type: "GET",
+                    url: "{{ path('voir_acteurDetails') }}",
+                    data: dataString,
+                    //dataType:"json",
+                    success: function(html) {
+                        $('#detail').html(html);
+                    }
+                });
+
+                $('#myModal').modal('show');
+
+            });
+            $(".btnFilm").on("click", function (e) {
+                e.preventDefault();
+
+                var ID = $(this).data('id');
+                var TITRE = $(this).data('nom');
+                document.getElementById("title").innerHTML=TITRE;
+                var dataString = {'ID':ID
+                };
+
+                $.ajax
+                ({
+                    type: "POST",
+                    url: "{{ path('GetDetail_Film') }}",
+                    data: dataString,
+                    //dataType:"json",
+                    success: function(html) {
+                        $('#detail').html(html);
+                    }
+                });
+
+                $('#myModal').modal('show');
+
+            });
+        });
+    </script>
+{% endblock %}

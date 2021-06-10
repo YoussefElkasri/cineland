@@ -1,0 +1,70 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent()}} Liste des acteurs ayant joué dans un film
+{% endblock %}
+
+{% block contenu %}
+
+    <div class="col-md-12">
+
+        <div class=" form">
+            <form action="action15Suite" method="POST">
+                <div class="form-group ">
+                    <label class="control-label col-lg-2">
+                        Titre<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-10">
+                        <input id="chercheNom" class="form-control "  placeholder="Entrer le titre de film..." name="titre" type="text" required="required">
+                        <div  id="resultat-recherche"></div>
+                    </div>
+                </div>
+
+                <div style="position: relative;top:10px;" class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input class="btn btn-theme" type="submit" value="Valider">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#chercheNom').keyup(function(){
+
+                $('#resultat-recherche').html('');
+
+                var titre = $(this).val();
+                var dataString = {'titre':titre
+                };
+
+                if(titre != ""){
+
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: "{{ path('recherche_barre_films') }}",
+                        data: dataString,
+                        //dataType:"json",
+                        success: function(html) {
+                            if(html != '') {
+
+                                $('#resultat-recherche').html(html);
+                            }else{
+
+                                document.getElementById('resultat-recherche').innerHTML = "<div >Aucun Film trouvé !</div>"
+                            }
+                        }
+                    });
+
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

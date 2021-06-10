@@ -1,0 +1,9 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }}  Ajouter un genre
+{% endblock %}
+{% block contenu %}
+    <h3>renseigner les champs ci-dessous</h3>
+    {% include "cineland/genre/formulaire.html.twig" %}
+
+{% endblock %}

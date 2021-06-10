@@ -1,0 +1,39 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent()}} Liste des genres
+{% endblock %}
+
+{% block contenu %}
+
+        <div class="col-md-12">
+            <a href="{{ path('ajouter_genre') }}"><button type="button" class="btn btn-success">Ajouter un genre</button></a>
+            <p></p>
+            <div class="content-panel">
+
+                <table class="table table-striped table-advance table-hover">
+
+                    <thead>
+                    <tr>
+                        <th> #ID</th>
+                        <th > Nom</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for genre in genres%}
+                    <tr>
+
+                        <td >{{genre.id}}</td>
+                        <td>{{genre.nom}} </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+{% endblock %}

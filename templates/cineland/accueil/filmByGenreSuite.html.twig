@@ -1,0 +1,47 @@
+
+<div class="content-panel">
+    <table class="table table-striped table-advance table-hover" id="dynamictable">
+        <thead>
+        <tr>
+            <th> #ID</th>
+            <th> TITRE</th>
+            <th> DUREE</th>
+            <th> DATE SORTIE</th>
+            <th> NOTE</th>
+            <th> AGE MINIMAL</th>
+            <th> GENRE</th>
+            <th> ACTEURS</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for film in films%}
+            <tr>
+
+                <td >{{film.id}}</td>
+                <td>{{film.titre}}</td>
+                <td>{{film.duree}}</td>
+                <td>{{film.dateSortie|date('d-m-Y')}}</td>
+                <td>{{film.note}}</td>
+                <td>{{film.ageMinimal}}</td>
+                <td>
+                    {% if film.genre.id|default('') != '' %}
+                        {{film.genre.nom}}
+                    {% endif %}
+                </td>
+                <td>
+                    <select multiple class="form-control">
+                        {% for acteur in film.acteurs%}
+                            <option>{{acteur.nomPrenom}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

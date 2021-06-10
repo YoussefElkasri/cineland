@@ -1,0 +1,106 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }} Les détails des acteurs
+{% endblock %}
+{% block contenu %}
+
+    <div class="col-md-12" id="page">
+        <div class="content-panel">
+            <table class="table table-striped table-advance table-hover" id="dynamictable">
+                <thead>
+                <tr>
+                    <th> #ID</th>
+                    <th> Nom et prénom</th>
+                    <th> Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for acteur in acteurs%}
+                    <tr>
+
+                        <td >{{acteur.id}}</td>
+                        <td><button id="btnInfo"  data-id="{{acteur.id}}" data-nom="{{acteur.nomPrenom}}">{{acteur.nomPrenom}} </button></td>
+                        <td>
+                            <a href="/acteur/modifier?id={{acteur.id}}" ><button type="submit" data-id="{{acteur.id}}" class="btn btnModifier btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                            <a href="" ><button data-id="{{acteur.id}}" class="btn btnSupprimer btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p></p>
+        <a href="" ><button class="btn btn-primary">Retour au filtre</button></a>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="title"> </h4>
+                </div>
+                <div class="modal-body" id="detail">
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $("#dynamictable").on("click","#btnInfo", function (e) {
+                e.preventDefault();
+
+                var ID = $(this).data('id');
+                var nomPrenom = $(this).data('nom');
+                document.getElementById("title").innerHTML=nomPrenom;
+                var dataString = {'ID':ID
+                };
+
+                $.ajax
+                ({
+                    type: "get",
+                    url: "{{ path('voir_acteurDetails') }}",
+                    data: dataString,
+                    //dataType:"json",
+                    success: function(html) {
+                        $('#detail').html(html);
+                    }
+                });
+
+                $('#myModal').modal('show');
+
+            });
+            {#$(".btnModifier").on("click", function (e) {#}
+            {#    e.preventDefault();#}
+
+            {#    var id = $(this).data('id');#}
+            {#    var dataString = {'id':id#}
+            {#    };#}
+
+            {#    $.ajax#}
+            {#    ({#}
+            {#        type: "get",#}
+            {#        url: "{{ path('modifier_acteur') }}",#}
+            {#        data: dataString,#}
+            {#        //dataType:"json",#}
+            {#        // success: function(response) {#}
+            {#        // }#}
+            {#    });#}
+
+            {#});#}
+        });
+    </script>
+{% endblock %}

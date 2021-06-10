@@ -1,0 +1,98 @@
+{% extends "cineland/layoutGeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent()}} Votre film par votre genre préféré
+{% endblock %}
+
+{% block contenu %}
+
+    <div class="col-md-12">
+
+        <div class=" form">
+            <div >
+                <div class="form-group ">
+                    <label class="control-label col-lg-2">
+                        Nom de Genre<span style="color: #880000"> *</span> :
+                    </label>
+                    <div class="col-lg-8">
+                        <input id="chercheNom" class="form-control "  placeholder="Entrer le nom de votre genre préféré..." type="text" required="required">
+                        <div  id="resultat-recherche"></div>
+                    </div>
+                    <div class="col-lg-2">
+                        <button id="btnValider" class="btn btn-theme" value="Valider">Valider</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-12" id="tabResultatRecherche">
+
+    </div>
+
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#chercheNom').keyup(function(){
+
+                $('#resultat-recherche').html('');
+
+                var nom = $(this).val();
+                var dataString = {'nom':nom
+                };
+
+               // alert(nom);
+                if(nom != ""){
+
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: "{{ path('recherche_barre_genres') }}",
+                        data: dataString,
+                        //dataType:"json",
+                        success: function(html) {
+                           if(html != '') {
+
+                               $('#resultat-recherche').html(html);
+                           }else{
+
+                               document.getElementById('resultat-recherche').innerHTML = "<div >Aucun Genre trouvé !</div>"
+                           }
+                        }
+                    });
+
+                }
+            });
+
+            //Button valider
+
+            $('#btnValider').click(function(){
+
+                var nom = $('#chercheNom').val();
+                var dataString = {'nom':nom
+                };
+
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: "{{ path('recherche_film_par_genre_Suite') }}",
+                        data: dataString,
+                        //dataType:"json",
+                        success: function(html) {
+                            if(html != '') {
+
+                                $('#tabResultatRecherche').html(html);
+                            }else{
+
+                                document.getElementById('tabResultatRecherche').innerHTML = "<div >Aucun Film trouvé !</div>"
+                            }
+                        }
+                    });
+
+            });
+
+        });
+    </script>
+{% endblock %}

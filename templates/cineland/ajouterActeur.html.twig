@@ -1,0 +1,11 @@
+{% extends "cineland/layoutgeneral.html.twig" %}
+
+{% block titre %}
+    {{ parent() }}  Ajouter un acteur
+{% endblock %}
+{% block contenu %}
+    <h3>renseigner les champs ci-dessous</h3>
+
+    {% include "cineland/acteur/formulaire.html.twig" %}
+
+{% endblock %}
